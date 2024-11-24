@@ -1,38 +1,118 @@
+/* App.css */
+
+/* ตั้งค่าทั่วไปสำหรับ body */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #fafafa;
+  margin: 0;
+  padding: 0;
+}
+
+/* การจัดสไตล์ให้กับส่วน App */
 .App {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ส่วนหัวของแอป */
+h1 {
   text-align: center;
+  font-size: 2.5em;
+  color: #333;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* สำหรับโพสต์แต่ละโพสต์ */
+.post {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.post h2 {
+  margin-top: 0;
+  font-size: 1.5em;
+  color: #444;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.post p {
+  color: #666;
+}
+
+/* ปุ่มไลค์ */
+.like-button {
+  background-color: #ff5858;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.like-button:hover {
+  background-color: #ff4040;
+}
+
+/* ฟอร์มสำหรับคอมเม้นต์ */
+.comment-form {
+  margin-top: 15px;
   display: flex;
-  flex-direction: column;
+  gap: 10px;
+}
+
+.comment-form input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1em;
+}
+
+.comment-form button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.comment-form button:hover {
+  background-color: #45a049;
+}
+
+/* การตกแต่ง UI อื่น ๆ */
+.post-list {
+  margin-top: 20px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.header-container h1 {
+  display: flex;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header-container img {
+  margin-right: 10px;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 10px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  margin: 20px 0;
 }

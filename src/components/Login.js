@@ -1,36 +1,42 @@
 import React, { useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
+import './Auth.css';
 
-function Login() {
+function Login({ handleCloseModal }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const logIn = () => {
-    auth.signInWithEmailAndPassword(email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log('User logged in:', userCredential.user);
+        // ปิดหน้าต่างโมดอลหลังจากล็อกอินสำเร็จ
+        handleCloseModal();
       })
       .catch((error) => {
         console.error('Error logging in:', error);
+        alert(error.message);
       });
   };
 
   return (
-    <div>
-      <h2>Log In</h2>
+    <div className="form-container">
+      <label>Email :</label>
       <input
         type="email"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
+      <label>Password :</label>
       <input
         type="password"
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={logIn}>Log In</button>
+      <button className="auth-button" onClick={logIn}>Log in</button>
     </div>
   );
 }

@@ -18,22 +18,22 @@ function AddPost() {
   };
 
   return (
-    <div>
-      <h2>Add Post</h2>
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <textarea
-        placeholder="Content"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-      />
-      <button onClick={addPost}>Add Post</button>
+    <div className="form-container">
+        <h2>Add Post</h2>
+        <input
+            type="text"
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+        />
+        <textarea
+            placeholder="Content"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+        />
+        <button onClick={addPost}>Add Post</button>
     </div>
-  );
+);
 }
 
 export default AddPost;

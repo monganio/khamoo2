@@ -1,118 +1,89 @@
-/* App.css */
-
-/* ตั้งค่าทั่วไปสำหรับ body */
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #fafafa;
-  margin: 0;
-  padding: 0;
-}
-
-/* การจัดสไตล์ให้กับส่วน App */
-.App {
-  max-width: 900px;
-  margin: 0 auto;
+.app-header {
+  position: relative; /* กำหนดให้เป็น relative เพื่อรองรับตำแหน่ง absolute ภายใน */
+  display: flex;
+  align-items: center;
   padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* ส่วนหัวของแอป */
-h1 {
-  text-align: center;
-  font-size: 2.5em;
-  color: #333;
-}
-
-/* สำหรับโพสต์แต่ละโพสต์ */
-.post {
-  margin-bottom: 20px;
-  padding: 15px;
   background-color: #fff;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e0e0e0;
 }
 
-.post h2 {
-  margin-top: 0;
-  font-size: 1.5em;
-  color: #444;
+.app-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
 }
 
-.post p {
-  color: #666;
-}
-
-/* ปุ่มไลค์ */
-.like-button {
-  background-color: #ff5858;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.like-button:hover {
-  background-color: #ff4040;
-}
-
-/* ฟอร์มสำหรับคอมเม้นต์ */
-.comment-form {
-  margin-top: 15px;
-  display: flex;
-  gap: 10px;
-}
-
-.comment-form input {
-  flex-grow: 1;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1em;
-}
-
-.comment-form button {
-  padding: 10px;
-  background-color: #4caf50;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.comment-form button:hover {
-  background-color: #45a049;
-}
-
-/* การตกแต่ง UI อื่น ๆ */
-.post-list {
-  margin-top: 20px;
-}
-
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header-container h1 {
+.auth-buttons {
+  margin-left: auto; /* ให้ปุ่มอยู่ชิดด้านขวา */
   display: flex;
   align-items: center;
 }
 
-.header-container img {
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
   margin-right: 10px;
 }
 
+/* ส่วนของการค้นหา */
 .search-bar {
-  width: 100%;
-  padding: 10px;
+  margin: 20px auto;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0;
   border-radius: 25px;
-  border: 1px solid #ccc;
-  margin: 20px 0;
+  padding: 10px;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  padding-left: 10px;
+}
+
+.search-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ปุ่มเพิ่มโพสต์ */
+.add-post-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  font-size: 36px;
+  cursor: pointer;
+}
+.logout-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 80px;
+  height: 40px;
+  background-color: #f00; /* สีแดงสำหรับปุ่ม Log out */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.logout-button:hover {
+  background-color: #c00;
 }

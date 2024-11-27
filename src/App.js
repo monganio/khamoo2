@@ -3,31 +3,26 @@ import React, { useState, useEffect } from 'react';
 import PostList from './components/PostList';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
-import { auth, db } from './firebase';
+import AddPost from './components/AddPost';
+import { auth } from './firebase';
 import { signOut } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
 
 function App() {
   const [user, setUser] = useState(null);
-  const [username, setUsername] = useState(''); // เพิ่มสถานะสำหรับเก็บ username
+  const [username, setUsername] = useState(''); // เพิ่มสถานะสำหรับเก็บชื่อผู้ใช้
   const [showModal, setShowModal] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
+  const [showAddPost, setShowAddPost] = useState(false);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
-
-        // ดึงข้อมูล username จาก Firestore
-        const userDoc = await getDoc(doc(db, 'users', user.uid));
-        if (userDoc.exists()) {
-          setUsername(userDoc.data().username);
-        } else {
-          setUsername('Unknown User');
-        }
+        setUsername(user.displayName || 'Unknown User'); // ดึงค่า displayName จาก Firebase
       } else {
         setUser(null);
-        setUsername(''); // ล้างข้อมูล username เมื่อผู้ใช้ล็อกเอาต์
+        setUsername(''); // ล้างข้อมูลชื่อผู้ใช้เมื่อผู้ใช้ล็อกเอาต์
       }
     });
 
@@ -57,6 +52,12 @@ function App() {
       });
   };
 
+  const handleAddPostSuccess = () => {
+    setShowAddPost(false);
+    setShowSuccessPopup(true);
+    setTimeout(() => setShowSuccessPopup(false), 3000); // แสดงป๊อปอัพเป็นเวลา 3 วินาที
+  };
+
   return (
     <div className="App">
       <header className="app-header">
@@ -65,7 +66,7 @@ function App() {
           {user ? (
             <div className="user-info">
               <img src="https://via.placeholder.com/50" alt="User Avatar" className="user-avatar" />
-              <span>{username}</span> {/* แสดง username ที่ดึงมา */}
+              <span>{username}</span> {/* แสดงชื่อผู้ใช้ */}
             </div>
           ) : (
             <button onClick={handleLoginClick}>Log in / Sign Up</button>
@@ -94,18 +95,27 @@ function App() {
         </div>
       )}
 
-      <div className="search-bar">
-        <input type="text" placeholder="Search" />
-        <button className="search-button">🔍</button>
-      </div>
-
       <PostList user={user} />
 
       {user && (
         <>
-          <button className="add-post-button">+</button>
+          <button className="add-post-button" onClick={() => setShowAddPost(true)}>+</button>
+          {showAddPost && (
+            <div className="add-post-modal">
+              <div className="add-post-content">
+                <button className="close-button" onClick={() => setShowAddPost(false)}>X</button>
+                <AddPost user={user} onSuccess={handleAddPostSuccess} />
+              </div>
+            </div>
+          )}
           <button className="logout-button" onClick={handleLogout}>Log out</button>
         </>
+      )}
+
+      {showSuccessPopup && (
+        <div className="success-popup">
+          <p>Post added successfully!</p>
+        </div>
       )}
     </div>
   );

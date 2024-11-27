@@ -34,12 +34,11 @@
 /* ส่วนของการค้นหา */
 .search-bar {
   margin: 20px auto;
-  width: 60%;
   display: flex;
   align-items: center;
   background-color: #f0f0f0;
   border-radius: 25px;
-  padding: 10px;
+  padding: 5px 10px;
 }
 
 .search-bar input {
@@ -48,6 +47,10 @@
   background: transparent;
   outline: none;
   padding-left: 10px;
+  color: #333333;
+  height: 10px;
+  padding-bottom:1px;
+  padding-top:15px;
 }
 
 .search-button {
@@ -86,4 +89,43 @@
 
 .logout-button:hover {
   background-color: #c00;
+}
+
+.add-post-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #2e2e2e;
+  color: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.add-post-content {
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.success-popup {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

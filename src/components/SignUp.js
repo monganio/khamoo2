@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { auth, db } from '../firebase'; // นำเข้าจาก firebase.js
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import './Auth.css';
 
@@ -13,10 +13,16 @@ function SignUp({ handleCloseModal }) {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        // บันทึกชื่อผู้ใช้ลงใน Firestore
-        return setDoc(doc(db, 'users', user.uid), {
-          username: username,
-          email: email,
+
+        // อัปเดต displayName ของผู้ใช้
+        return updateProfile(user, {
+          displayName: username,
+        }).then(() => {
+          // บันทึกชื่อผู้ใช้ลงใน Firestore
+          return setDoc(doc(db, 'users', user.uid), {
+            username: username,
+            email: email,
+          });
         });
       })
       .then(() => {

@@ -3,15 +3,17 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 import './Auth.css';
 
+
 function Login({ handleCloseModal }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
 
   const logIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log('User logged in:', userCredential.user);
-        // ปิดหน้าต่างโมดอลหลังจากล็อกอินสำเร็จ
+       
         handleCloseModal();
       })
       .catch((error) => {
@@ -19,6 +21,7 @@ function Login({ handleCloseModal }) {
         alert(error.message);
       });
   };
+
 
   return (
     <div className="form-container">

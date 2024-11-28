@@ -1,5 +1,5 @@
 .app-header {
-  position: relative; /* กำหนดให้เป็น relative เพื่อรองรับตำแหน่ง absolute ภายใน */
+  position: relative; 
   display: flex;
   align-items: center;
   padding: 20px;
@@ -14,7 +14,7 @@
 }
 
 .auth-buttons {
-  margin-left: auto; /* ให้ปุ่มอยู่ชิดด้านขวา */
+  margin-left: auto; 
   display: flex;
   align-items: center;
 }
@@ -31,7 +31,6 @@
   margin-right: 10px;
 }
 
-/* ส่วนของการค้นหา */
 .search-bar {
   margin: 20px auto;
   display: flex;
@@ -59,7 +58,6 @@
   cursor: pointer;
 }
 
-/* ปุ่มเพิ่มโพสต์ */
 .add-post-button {
   position: fixed;
   bottom: 20px;
@@ -113,7 +111,7 @@
   right: 10px;
   background: none;
   border: none;
-  color: #fff;
+  color: #0b0b0b;
   font-size: 1.2rem;
   cursor: pointer;
 }

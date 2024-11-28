@@ -1,24 +1,28 @@
 import React, { useState } from 'react';
-import { auth, db } from '../firebase'; // นำเข้าจาก firebase.js
+import { auth, db } from '../firebase';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import './Auth.css';
+
 
 function SignUp({ handleCloseModal }) {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+
   const signUp = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
 
-        // อัปเดต displayName ของผู้ใช้
+
+       
         return updateProfile(user, {
           displayName: username,
         }).then(() => {
-          // บันทึกชื่อผู้ใช้ลงใน Firestore
+
+
           return setDoc(doc(db, 'users', user.uid), {
             username: username,
             email: email,
@@ -27,13 +31,14 @@ function SignUp({ handleCloseModal }) {
       })
       .then(() => {
         console.log('User signed up and username saved');
-        handleCloseModal(); // ปิดหน้าต่างโมดอลหลังจากสมัครสมาชิกสำเร็จ
+        handleCloseModal();
       })
       .catch((error) => {
         console.error('Error signing up:', error);
         alert(error.message);
       });
   };
+
 
   return (
     <div className="form-container">

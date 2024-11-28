@@ -21,7 +21,7 @@ function AddPost({ user, onSuccess }) {
         setTitle('');
         setContent('');
         console.log('Post added successfully');
-        onSuccess(); // เรียกใช้งานฟังก์ชันเมื่อโพสต์สำเร็จ
+        onSuccess();
       } catch (error) {
         console.error('Error adding post:', error);
         alert('Failed to add post. Please try again.');

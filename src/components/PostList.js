@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../firebase';
 import { doc, updateDoc, increment, collection, onSnapshot, deleteDoc, addDoc } from 'firebase/firestore';
+import { getDocs } from 'firebase/firestore';
 import './PostList.css';
-import './Auth.css'; // ใช้ CSS เดียวกับ AddPost
+import './Auth.css'; 
 
 function PostList({ user }) {
   const [posts, setPosts] = useState([]);
@@ -15,12 +16,28 @@ function PostList({ user }) {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, 'posts'), (snapshot) => {
-      setPosts(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+    const unsubscribe = onSnapshot(collection(db, 'posts'), async (snapshot) => {
+      const postsData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      setPosts(postsData);
+  
+      const commentsPromises = postsData.map(async (post) => {
+        const commentsSnapshot = await getDocs(collection(db, 'posts', post.id, 'comments'));
+        return {
+          postId: post.id,
+          comments: commentsSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
+        };
+      });
+  
+      const commentsArray = await Promise.all(commentsPromises);
+      const commentsData = {};
+      commentsArray.forEach(({ postId, comments }) => {
+        commentsData[postId] = comments;
+      });
+      setComments(commentsData);
     });
-
+  
     return () => unsubscribe();
-  }, []);
+  }, []);  
 
   const handleLike = async (postId) => {
     if (user) {

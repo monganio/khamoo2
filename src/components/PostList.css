@@ -59,7 +59,7 @@
   }
   
   .like-button:hover, .comment-info:hover {
-    color: #fdd835; /* เปลี่ยนสีเมื่อ hover */
+    color: #fdd835; 
   }
   
   .like-button svg, .comment-info svg {

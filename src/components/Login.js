@@ -3,10 +3,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 import './Auth.css';
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 1f55c05825ad3b6cce29a3de2663cfa9d018855b
 function Login({ handleCloseModal }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,11 +13,7 @@ function Login({ handleCloseModal }) {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log('User logged in:', userCredential.user);
-<<<<<<< HEAD
        
-=======
-        // ปิดหน้าต่างโมดอลหลังจากล็อกอินสำเร็จ
->>>>>>> 1f55c05825ad3b6cce29a3de2663cfa9d018855b
         handleCloseModal();
       })
       .catch((error) => {
@@ -50,5 +43,6 @@ function Login({ handleCloseModal }) {
     </div>
   );
 }
+
 
 export default Login;

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { db, auth } from '../firebase';
 
+
 function CommentSection({ postId }) {
   const [comment, setComment] = useState('');
+
 
   const addComment = () => {
     if (auth.currentUser) {
@@ -13,6 +15,7 @@ function CommentSection({ postId }) {
       setComment('');
     }
   };
+
 
   return (
     <div>

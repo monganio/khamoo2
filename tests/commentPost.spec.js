@@ -5,12 +5,16 @@ test('User can comment on a post', async ({ page }) => {
 
   await page.click('text=Log in / Sign Up');
   await page.fill('input[placeholder="Email"]', 'test@example.com');
-  await page.fill('input[placeholder="Password"]', 'testpassword');
+  await page.fill('input[placeholder="Password"]', 'Test1234');
   await page.getByRole('button', { name: 'Log in', exact: true }).click();
+  await page.getByRole('button', { name: 'X' }).click();
+  await page.waitForTimeout(5000);
 
-  await page.getByText('💬 0').click();
-  await page.getByPlaceholder('Write your comment...').fill('This is a test comment.');
+  await page.getByText('💬').first().click();
+
+  await page.getByPlaceholder('Write your comment...').fill('test comment');
   await page.getByRole('button', { name: 'Submit' }).click();
+  await page.waitForTimeout(1000);
 
-  await expect(page.locator('div.comment')).toContainText('This is a test comment.');
+  await expect(page.getByText('Test: test comment').first()).toBeVisible();
 });

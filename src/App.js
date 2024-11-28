@@ -7,51 +7,47 @@ import AddPost from './components/AddPost';
 import { auth } from './firebase';
 import { signOut } from 'firebase/auth';
 
+
 function App() {
   const [user, setUser] = useState(null);
-<<<<<<< HEAD
-  const [username, setUsername] = useState(''); 
-=======
-  const [username, setUsername] = useState(''); // เพิ่มสถานะสำหรับเก็บชื่อผู้ใช้
->>>>>>> 1f55c05825ad3b6cce29a3de2663cfa9d018855b
+  const [username, setUsername] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [showAddPost, setShowAddPost] = useState(false);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
-<<<<<<< HEAD
-        setUsername(user.displayName || 'Unknown User'); 
+        setUsername(user.displayName || 'Unknown User');
       } else {
         setUser(null);
-        setUsername(''); 
-=======
-        setUsername(user.displayName || 'Unknown User'); // ดึงค่า displayName จาก Firebase
-      } else {
-        setUser(null);
-        setUsername(''); // ล้างข้อมูลชื่อผู้ใช้เมื่อผู้ใช้ล็อกเอาต์
->>>>>>> 1f55c05825ad3b6cce29a3de2663cfa9d018855b
+        setUsername('');
       }
     });
 
+
     return () => unsubscribe();
   }, []);
+
 
   const handleLoginClick = () => {
     setIsLogin(true);
     setShowModal(true);
   };
 
+
   const handleToggleAuthForm = () => {
     setIsLogin((prevIsLogin) => !prevIsLogin);
   };
 
+
   const handleCloseModal = () => {
     setShowModal(false);
   };
+
 
   const handleLogout = () => {
     signOut(auth)
@@ -63,15 +59,13 @@ function App() {
       });
   };
 
+
   const handleAddPostSuccess = () => {
     setShowAddPost(false);
     setShowSuccessPopup(true);
-<<<<<<< HEAD
-    setTimeout(() => setShowSuccessPopup(false), 3000); 
-=======
-    setTimeout(() => setShowSuccessPopup(false), 3000); // แสดงป๊อปอัพเป็นเวลา 3 วินาที
->>>>>>> 1f55c05825ad3b6cce29a3de2663cfa9d018855b
+    setTimeout(() => setShowSuccessPopup(false), 3000);
   };
+
 
   return (
     <div className="App">
@@ -88,6 +82,7 @@ function App() {
           )}
         </div>
       </header>
+
 
       {showModal && (
         <div className="auth-modal">
@@ -110,7 +105,9 @@ function App() {
         </div>
       )}
 
+
       <PostList user={user} />
+
 
       {user && (
         <>
@@ -127,6 +124,7 @@ function App() {
         </>
       )}
 
+
       {showSuccessPopup && (
         <div className="success-popup">
           <p>Post added successfully!</p>
@@ -135,5 +133,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

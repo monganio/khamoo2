@@ -5,7 +5,9 @@ test('User can log in successfully', async ({ page }) => {
   await page.click('text=Log in / Sign Up');
 
   await page.fill('input[placeholder="Email"]', 'test@example.com');
-  await page.fill('input[placeholder="Password"]', 'testpassword');
-
+  await page.fill('input[placeholder="Password"]', 'Test1234');
   await page.getByRole('button', { name: 'Log in', exact: true }).click();
+  await page.getByRole('button', { name: 'X' }).click();
+
+  await expect(page.getByRole('banner').getByText('Test')).toBeVisible();
 });

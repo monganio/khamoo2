@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { db } from '../firebase';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
 
+
 function AddPost({ user, onSuccess }) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+
 
   const handleAddPost = async () => {
     if (title && content) {
@@ -21,11 +23,7 @@ function AddPost({ user, onSuccess }) {
         setTitle('');
         setContent('');
         console.log('Post added successfully');
-<<<<<<< HEAD
         onSuccess();
-=======
-        onSuccess(); // เรียกใช้งานฟังก์ชันเมื่อโพสต์สำเร็จ
->>>>>>> 1f55c05825ad3b6cce29a3de2663cfa9d018855b
       } catch (error) {
         console.error('Error adding post:', error);
         alert('Failed to add post. Please try again.');
@@ -34,6 +32,7 @@ function AddPost({ user, onSuccess }) {
       alert('Title and content are required');
     }
   };
+
 
   return (
     <div className="form-container">
@@ -54,5 +53,6 @@ function AddPost({ user, onSuccess }) {
     </div>
   );
 }
+
 
 export default AddPost;

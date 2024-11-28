@@ -9,9 +9,10 @@ test('User can sign up successfully', async ({ page }) => {
 
   await page.getByText('Sign up', { exact: true }).click();
 
-  await page.getByPlaceholder('Email').fill('barbie@example.com');
-  await page.getByPlaceholder('Username').fill('Barbie');
-  await page.getByPlaceholder('Password').fill('Barbie1234');
-
+  await page.getByPlaceholder('Email').fill('test@example.com');
+  await page.getByPlaceholder('Username').fill('Test');
+  await page.getByPlaceholder('Password').fill('Test1234');
   await page.getByRole('button', { name: 'Sign up', exact: true }).click();
+  await page.getByRole('button', { name: 'X' }).click();
+
 });

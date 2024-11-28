@@ -1,5 +1,9 @@
 .app-header {
+<<<<<<< HEAD
   position: relative; 
+=======
+  position: relative; /* กำหนดให้เป็น relative เพื่อรองรับตำแหน่ง absolute ภายใน */
+>>>>>>> 1f55c05825ad3b6cce29a3de2663cfa9d018855b
   display: flex;
   align-items: center;
   padding: 20px;
@@ -14,7 +18,11 @@
 }
 
 .auth-buttons {
+<<<<<<< HEAD
   margin-left: auto; 
+=======
+  margin-left: auto; /* ให้ปุ่มอยู่ชิดด้านขวา */
+>>>>>>> 1f55c05825ad3b6cce29a3de2663cfa9d018855b
   display: flex;
   align-items: center;
 }
@@ -31,6 +39,7 @@
   margin-right: 10px;
 }
 
+/* ส่วนของการค้นหา */
 .search-bar {
   margin: 20px auto;
   display: flex;
@@ -58,6 +67,10 @@
   cursor: pointer;
 }
 
+<<<<<<< HEAD
+=======
+/* ปุ่มเพิ่มโพสต์ */
+>>>>>>> 1f55c05825ad3b6cce29a3de2663cfa9d018855b
 .add-post-button {
   position: fixed;
   bottom: 20px;
@@ -111,7 +124,11 @@
   right: 10px;
   background: none;
   border: none;
+<<<<<<< HEAD
   color: #0b0b0b;
+=======
+  color: #fff;
+>>>>>>> 1f55c05825ad3b6cce29a3de2663cfa9d018855b
   font-size: 1.2rem;
   cursor: pointer;
 }

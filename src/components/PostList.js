@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../firebase';
 import { doc, updateDoc, increment, collection, onSnapshot, deleteDoc, addDoc } from 'firebase/firestore';
+<<<<<<< HEAD
 import { getDocs } from 'firebase/firestore';
 import './PostList.css';
 import './Auth.css'; 
+=======
+import './PostList.css';
+import './Auth.css'; // ใช้ CSS เดียวกับ AddPost
+>>>>>>> 1f55c05825ad3b6cce29a3de2663cfa9d018855b
 
 function PostList({ user }) {
   const [posts, setPosts] = useState([]);
@@ -14,6 +19,7 @@ function PostList({ user }) {
   const [editTitle, setEditTitle] = useState('');
   const [editContent, setEditContent] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+<<<<<<< HEAD
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, 'posts'), async (snapshot) => {
@@ -38,6 +44,89 @@ function PostList({ user }) {
   
     return () => unsubscribe();
   }, []);  
+
+  const handleLike = async (postId) => {
+    if (user) {
+      try {
+        const postRef = doc(db, 'posts', postId);
+        await updateDoc(postRef, {
+          likes: increment(1),
+        });
+      } catch (error) {
+        console.error('Error liking post:', error);
+      }
+    } else {
+      alert('You need to be logged in to like a post.');
+    }
+  };
+=======
+>>>>>>> 1f55c05825ad3b6cce29a3de2663cfa9d018855b
+
+  const handleEdit = (post) => {
+    setIsEditing(post.id);
+    setEditTitle(post.title);
+    setEditContent(post.content);
+  };
+
+  const handleSaveEdit = async (postId) => {
+    try {
+      const postRef = doc(db, 'posts', postId);
+      await updateDoc(postRef, {
+        title: editTitle,
+        content: editContent,
+      });
+      setIsEditing(null);
+      console.log('Post updated successfully');
+    } catch (error) {
+      console.error('Error updating post:', error);
+    }
+  };
+
+  const handleDelete = async (postId) => {
+    try {
+      const postRef = doc(db, 'posts', postId);
+      await deleteDoc(postRef);
+      console.log('Post deleted successfully');
+    } catch (error) {
+      console.error('Error deleting post:', error);
+    }
+  };
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const filteredPosts = posts.filter((post) =>
+    post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    post.content.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const handleComment = async (postId) => {
+    if (user) {
+      if (commentContent.trim()) {
+        try {
+          const postRef = collection(db, 'posts', postId, 'comments');
+          await addDoc(postRef, {
+            content: commentContent,
+            username: user.displayName || 'Unknown User',
+            createdAt: new Date(),
+          });
+
+          setComments((prevComments) => ({
+            ...prevComments,
+            [postId]: [...(prevComments[postId] || []), { content: commentContent, username: user.displayName || 'Unknown User' }],
+          }));
+
+          setCommentContent('');
+          setIsCommenting(null);
+        } catch (error) {
+          console.error('Error adding comment:', error);
+        }
+      }
+    } else {
+      alert('You need to be logged in to comment.');
+    }
+  };
 
   const handleLike = async (postId) => {
     if (user) {

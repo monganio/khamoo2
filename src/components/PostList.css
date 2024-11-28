@@ -59,7 +59,11 @@
   }
   
   .like-button:hover, .comment-info:hover {
+<<<<<<< HEAD
     color: #fdd835; 
+=======
+    color: #fdd835; /* เปลี่ยนสีเมื่อ hover */
+>>>>>>> 1f55c05825ad3b6cce29a3de2663cfa9d018855b
   }
   
   .like-button svg, .comment-info svg {

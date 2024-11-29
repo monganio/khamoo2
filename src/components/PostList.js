@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../firebase';
-import { doc, updateDoc, increment, collection, onSnapshot, deleteDoc, addDoc } from 'firebase/firestore';
+import { doc, updateDoc, increment, collection, onSnapshot, deleteDoc, addDoc, orderBy, query } from 'firebase/firestore';
 import { getDocs } from 'firebase/firestore';
 import './PostList.css';
 import './Auth.css';
@@ -18,7 +18,9 @@ function PostList({ user }) {
 
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, 'posts'), async (snapshot) => {
+    const postsQuery = query(collection(db, 'posts'), orderBy('createdAt', 'desc'));
+
+  const unsubscribe = onSnapshot(postsQuery, async (snapshot) => {
       const postsData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setPosts(postsData);
  

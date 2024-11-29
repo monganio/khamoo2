@@ -58,6 +58,10 @@ input {
   justify-content: center;
 }
 
+.auth-modal.hidden {
+  display: none;
+}
+
 .auth-content {
   background: #fff;
   padding: 30px;

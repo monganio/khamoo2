@@ -7,8 +7,7 @@ test('User can comment on a post', async ({ page }) => {
   await page.fill('input[placeholder="Email"]', 'test@example.com');
   await page.fill('input[placeholder="Password"]', 'Test1234');
   await page.getByRole('button', { name: 'Log in', exact: true }).click();
-  await page.getByRole('button', { name: 'X' }).click();
-  await page.waitForTimeout(5000);
+  await page.waitForTimeout(3000);
 
   await page.getByText('💬').first().click();
 

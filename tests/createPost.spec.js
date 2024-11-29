@@ -7,7 +7,6 @@ test('User can create a new post', async ({ page }) => {
   await page.fill('input[placeholder="Email"]', 'test@example.com');
   await page.fill('input[placeholder="Password"]', 'Test1234');
   await page.getByRole('button', { name: 'Log in', exact: true }).click();
-  await page.getByRole('button', { name: 'X' }).click();
 
   await page.getByRole('button', { name: '+' }).click();
 

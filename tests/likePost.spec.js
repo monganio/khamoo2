@@ -7,7 +7,6 @@ test('User can like a post', async ({ page }) => {
   await page.fill('input[placeholder="Email"]', 'test@example.com');
   await page.fill('input[placeholder="Password"]', 'Test1234');
   await page.getByRole('button', { name: 'Log in', exact: true }).click();
-  await page.getByRole('button', { name: 'X' }).click();
   
   const post = await page.locator('.post-card').first(); 
   const likeButton = post.locator('button.like-button');
@@ -15,7 +14,7 @@ test('User can like a post', async ({ page }) => {
   await likeButton.click();
 await page.waitForTimeout(1000);
 
-const likeCount = await page.locator('button.like-button').innerText();
+const likeCount = await page.locator('button.like-button').first().innerText();
 expect(likeCount).toBe('❤️ 1');
 
 });

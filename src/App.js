@@ -45,6 +45,10 @@ function App() {
 
 
   const handleCloseModal = () => {
+    const modal = document.querySelector('.auth-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+    }
     setShowModal(false);
   };
 

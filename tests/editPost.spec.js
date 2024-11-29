@@ -7,9 +7,8 @@ test('User can edit their own post', async ({ page }) => {
   await page.fill('input[placeholder="Email"]', 'test@example.com');
   await page.fill('input[placeholder="Password"]', 'Test1234');
   await page.getByRole('button', { name: 'Log in', exact: true }).click();
-  await page.getByRole('button', { name: 'X' }).click();
 
-  await page.getByRole('button', { name: 'Edit' }).click();
+  await page.getByRole('button', { name: 'Edit' }).first().click();
 
   await page.fill('input[placeholder="Topic"]', 'Edited Test Post Title');
   await page.fill('textarea[placeholder="Content"]', 'This is the edited content.');
